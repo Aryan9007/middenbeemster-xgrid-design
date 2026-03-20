@@ -1,12 +1,14 @@
-CREATE DATABASE 'middenbeemster-Smidse';
+CREATE DATABASE `middenbeemster-Smidse`;
 
-CREATE TABLE 'UserAdmin' (
+USE `middenbeemster-Smidse`;
+
+CREATE TABLE UserAdmin (
     'id' INT PRIMARY KEY AUTO_INCREMENT,
     'username' VARCHAR(255) NOT NULL,
     'password' VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE 'Content' (
+CREATE TABLE Content (
     'id' INT PRIMARY KEY AUTO_INCREMENT,
     'Location' VARCHAR(255) NOT NULL,
     'ApiName' VARCHAR(255) NOT NULL,
@@ -17,3 +19,6 @@ CREATE TABLE 'Content' (
     'CreatedAt' TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     'UpdatedAt' TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+FOREIGN KEY (PublishedBy) REFERENCES UserAdmin(username),
+FOREIGN KEY (lastEditedBy) REFERENCES UserAdmin(username);
