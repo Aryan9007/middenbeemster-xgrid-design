@@ -65,6 +65,7 @@ Het ontwikkelen van een webgebaseerde 3D-ervaring van de Middenbeemster inclusie
 **Methodiek:** Scrum  
 **Sprints:** 10 weken → 10 sprints  
 **Sprint meeting:** Elke woensdag om 14:30  
+**Standup:** Elke dag om 09:30  
 
 **Tools:**  
 - GitHub  
