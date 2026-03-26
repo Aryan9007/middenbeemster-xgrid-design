@@ -1,31 +1,22 @@
-lokaal:
+# Middenbeemster XGrid
+Welkom bij de GitHub repository van het 3D-ervaring project voor Gemeente Purmerend.\
+Dit project wordt onderhouden door InformAR en wordt ontwikkeld door Aryan, Jarno, Mateusz, Mats en Mehdi.
 
-# API Documentatie – Express + MariaDB + Vue
+# Table of Contents
+- [Technieken](#technieken)
+- [API](#api)
 
-## Overzicht
+# Technieken
+Dit project wordt voornamelijk gemaakt in Vue, Express, Tailwind en MariaDB. \
+Verdere documentaties en toelichtingen zijn te vinden in de `/server` of `/client` mappen.
 
-Dit project bestaat uit 3 onderdelen:
-
-* **Client** → Vue frontend (`/client`)
-* **Server** → Express API (`/server`)
-* **Database** → MariaDB
-
-De flow werkt als volgt:
-
-```
-Vue (client) → Express API → MariaDB → Express → Vue
-```
-
----
-
+# API
 ##  Server starten
-
-Ga naar de server map:
+Zorg ervoor dat je in de `/server` map zit voordat je begint.
 
 ```bash
-cd server
 npm install
-node server.js
+node server.js 
 ```
 
 De API draait op:
@@ -44,7 +35,7 @@ http://localhost:3000/api
 
 ---
 
-#  Endpoints
+##  Endpoints
 
 ##  Content ophalen
 
@@ -146,15 +137,7 @@ POST /api/auth/login
 
 ---
 
-#  Vue gebruik
-
-## Axios installeren
-
-```bash
-npm install axios
-```
-
----
+##  Vue gebruik
 
 ## Data ophalen
 
@@ -171,7 +154,7 @@ console.log(res.data);
 
 ## Vue component voorbeeld
 
-```vue
+```html
 <script setup>
 import { ref, onMounted } from 'vue'
 import axios from 'axios'

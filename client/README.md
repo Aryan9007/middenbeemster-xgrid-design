@@ -4,7 +4,7 @@ Hier komen Vite, Vue en Tailwind bij kijken.
 Als je hierin werkt via de terminal, zorg ervoor dat je daadwerkelijk in de client map.
 
 # Clonen
-Als je dit net hebt gekloond run dan `npm i`.
+Als je dit net hebt gekloond of gepulled run dan `npm i`.
 
 # Development
 Tijdens het developen run je `npm run dev`. Hiermee kan je live reloads krijgen van de front-end.
