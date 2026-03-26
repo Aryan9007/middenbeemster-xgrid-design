@@ -1,3 +1,6 @@
+# Root
+.env
+
 # Back-end
 # Node
 /server/node_modules
