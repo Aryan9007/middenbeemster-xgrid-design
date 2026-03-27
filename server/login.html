@@ -1,61 +1,404 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <div class="login-form">
-            <form method='post'>
-                <div class="form-group">
-                    <label for="username">Name</label>
-                    <input type="text" name="username" id="username" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-control">
-                </div>
-                <input type="submit" id="submit" value="Log In" class="btn btn-primary">
-            </form>
-            <form action="register.html">
-                <input type="submit" value="Register Account" class="btn btn-secondary">
-            </form>
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midden-Beemster – Inloggen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --color-dark: #1c2b1c;
+        --color-dark-green: #243524;
+        --color-gold: #c9a55a;
+        --color-cream: #f4efe6;
+        --color-cream-light: #faf7f2;
+        --color-text-dark: #1a1a1a;
+        --shadow: 0 24px 65px rgba(0, 0, 0, 0.35);
+        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        background: var(--color-cream-light);
+        color: var(--color-text-dark);
+      }
+
+      .page {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 60px 1fr;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--color-dark);
+        height: 60px;
+        padding: 0 2rem;
+        display: flex;
+        align-items: center;
+      }
+
+      .topbar-inner {
+        width: 100%;
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: white;
+        text-decoration: none;
+      }
+
+      .brand-logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 6px;
+        background-color: var(--color-gold);
+        display: grid;
+        place-items: center;
+        color: var(--color-dark);
+        flex-shrink: 0;
+      }
+
+      .brand-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .content {
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        place-items: center;
+        padding: 3.5rem 1.25rem;
+      }
+
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(900px 500px at 15% 20%, rgba(201, 165, 90, 0.14) 0%, rgba(201, 165, 90, 0) 60%),
+          radial-gradient(800px 450px at 85% 75%, rgba(201, 165, 90, 0.10) 0%, rgba(201, 165, 90, 0) 65%),
+          linear-gradient(
+            to right,
+            rgba(10, 20, 10, 0.92) 0%,
+            rgba(10, 20, 10, 0.78) 55%,
+            rgba(10, 20, 10, 0.64) 100%
+          );
+      }
+
+      .panel {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        border-radius: 18px;
+        background: rgba(250, 247, 242, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        padding: 2rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background-color: rgba(201, 165, 90, 0.15);
+        border: 1px solid rgba(201, 165, 90, 0.35);
+        color: var(--color-gold);
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        margin-bottom: 1.25rem;
+        user-select: none;
+      }
+
+      h1 {
+        margin: 0 0 0.55rem 0;
+        font-family: "Playfair Display", Georgia, serif;
+        font-size: 2.1rem;
+        line-height: 1.15;
+        color: white;
+      }
+
+      .subtitle {
+        margin: 0 0 1.6rem 0;
+        color: rgba(255, 255, 255, 0.68);
+        line-height: 1.6;
+        font-size: 0.98rem;
+      }
+
+      .form {
+        display: grid;
+        gap: 0.95rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      label {
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 0.85rem;
+        font-weight: 500;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background-color: rgba(255, 255, 255, 0.06);
+        color: white;
+        padding: 0.85rem 0.95rem;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+      }
+
+      input::placeholder {
+        color: rgba(255, 255, 255, 0.38);
+      }
+
+      input:focus {
+        border-color: rgba(201, 165, 90, 0.55);
+        box-shadow: 0 0 0 4px rgba(201, 165, 90, 0.16);
+        background-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .error {
+        display: none;
+        border-radius: 12px;
+        padding: 0.8rem 0.9rem;
+        background-color: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: rgba(255, 255, 255, 0.82);
+        line-height: 1.45;
+      }
+
+      .error[data-visible="true"] {
+        display: block;
+      }
+
+      .actions {
+        display: grid;
+        gap: 0.65rem;
+        margin-top: 0.35rem;
+      }
+
+      .btn {
+        width: 100%;
+        border: 0;
+        cursor: pointer;
+        border-radius: 999px;
+        padding: 0.75rem 1.1rem;
+        font-weight: 600;
+        font-size: 0.95rem;
+        font-family: "Inter", system-ui, sans-serif;
+        transition: transform 0.15s, background-color 0.2s, opacity 0.2s;
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn-primary {
+        background-color: var(--color-gold);
+        color: var(--color-dark);
+      }
+
+      .btn-primary:hover {
+        background-color: #b8923f;
+      }
+
+      .btn-secondary {
+        background-color: rgba(201, 165, 90, 0.18);
+        color: #e8c97a;
+        border: 1px solid rgba(201, 165, 90, 0.45);
+      }
+
+      .btn-secondary:hover {
+        background-color: rgba(201, 165, 90, 0.32);
+      }
+
+      .meta {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 0.78rem;
+      }
+
+      .meta a {
+        color: rgba(255, 255, 255, 0.62);
+        text-decoration: none;
+      }
+
+      .meta a:hover {
+        color: white;
+      }
+
+      @media (max-width: 480px) {
+        .topbar {
+          padding: 0 1rem;
+        }
+        .panel {
+          padding: 1.4rem;
+          border-radius: 16px;
+        }
+        h1 {
+          font-size: 1.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <a class="brand" href="/">
+            <span class="brand-logo" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+              </svg>
+            </span>
+            <span class="brand-title">Midden-Beemster</span>
+          </a>
         </div>
+      </header>
+
+      <main class="content">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <section class="panel" aria-label="Inloggen">
+          <div class="badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <polygon points="5,3 19,12 5,21"></polygon>
+            </svg>
+            LOGIN
+          </div>
+
+          <h1>Welkom terug</h1>
+          <p class="subtitle">Log in om verder te gaan met de 3D ervaring.</p>
+
+          <div id="errorBox" class="error" role="alert" aria-live="polite"></div>
+
+          <form id="loginForm" class="form" method="post" novalidate>
+            <div class="field">
+              <label for="username">Naam</label>
+              <input type="text" name="username" id="username" placeholder="Jouw naam" autocomplete="username" />
+            </div>
+
+            <div class="field">
+              <label for="password">Wachtwoord</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Jouw wachtwoord"
+                autocomplete="current-password"
+              />
+            </div>
+
+            <div class="actions">
+              <button type="submit" id="submit" class="btn btn-primary">Log in</button>
+              <a class="btn btn-secondary" href="register.html" role="button">Account aanmaken</a>
+            </div>
+
+            <div class="meta">
+              <span>UNESCO Werelderfgoed · Beemster</span>
+              <a href="/">Terug naar home</a>
+            </div>
+          </form>
+        </section>
+      </main>
     </div>
-</body>
-</html>
-<script>
-    document.querySelector('form').addEventListener('submit', async function(e) {
-    e.preventDefault();
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    <script>
+      const form = document.getElementById("loginForm");
+      const submitBtn = document.getElementById("submit");
+      const errorBox = document.getElementById("errorBox");
 
-    try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username, password })
-        });
+      function setError(message) {
+        if (!message) {
+          errorBox.textContent = "";
+          errorBox.dataset.visible = "false";
+          return;
+        }
+        errorBox.textContent = message;
+        errorBox.dataset.visible = "true";
+      }
 
-        const data = await response.json();
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        setError("");
 
-        console.log(data);
+        const username = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
 
-        if (!response.ok) {
-            alert(data.error);
-        } else {
-            alert('Login gelukt!');
-            console.log(data);
+        if (!username || !password) {
+          setError("Vul je naam en wachtwoord in.");
+          return;
         }
 
-    } catch (err) {
-        console.error(err);
-        alert('Server error');
-    }
-});
-</script>
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = "0.85";
+        submitBtn.textContent = "Bezig met inloggen…";
+
+        try {
+          const response = await fetch("http://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password }),
+          });
+
+          const data = await response.json().catch(() => ({}));
+
+          if (!response.ok) {
+            setError(data.error || "Inloggen mislukt. Controleer je gegevens.");
+          } else {
+            alert("Login gelukt!");
+          }
+        } catch (err) {
+          console.error(err);
+          setError("Server error. Probeer het zo opnieuw.");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.style.opacity = "1";
+          submitBtn.textContent = "Log in";
+        }
+      });
+    </script>
+  </body>
+</html>
